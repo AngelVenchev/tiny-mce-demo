@@ -6,7 +6,9 @@
     "@tinymce/tinymce-react": "^3.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "0.9.x"
+    "react-scripts": "0.9.x",
+    "tinymce": "^5.0.4",
+    "tinymce-mention": "^4.0.2"
   },
   "devDependencies": {},
   "scripts": {

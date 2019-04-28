@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+
+import tinymce from 'tinymce/tinymce';
+import 'tinymce/themes/silver/theme';
+import 'tinymce/skins/ui/oxide/skin.min.css';
+import 'tinymce/skins/ui/oxide/content.min.css';
+import 'tinymce/skins/content/default/content.css';
+import 'tinymce/plugins/template';
+import 'tinymce-mention';
+import 'tinymce-mention/css/rte-content.css';
+import 'tinymce-mention/css/autocomplete.css';
+
 import { Editor } from '@tinymce/tinymce-react';
 
 class App extends Component {
@@ -28,11 +39,26 @@ class App extends Component {
     }
 
     this.init = {
-      plugins: "template",
+      plugins: "mention, template",
       // menubar: "insert",
       // toolbar: "template",
       templates: [{title: 'Договор', description: 'Някакъв си договор', content: templateContent}],
-      template_replace_values: values
+      template_replace_values: values,
+      mentions: {
+        source: [
+            { name: 'Company name',
+              property: 'companyName' }, 
+            { name: 'Employee name',
+              property: 'employeeName' },
+            { name: 'UCN/UIC',
+              property: 'ucnUic' },
+            { name: 'IBAN',
+              property: 'iban' }
+        ],
+        insert: function(item) {
+          return `{$${item.property}}`
+        }
+      }
     }
   }
 
