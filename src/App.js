@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import InsertInfo from './InsertInfo.js';
-import BuildTemplate from './BuildTemplate.js';
 import InsertTemplate from './InsertTemplate.js';
+import BuildTemplate from './BuildTemplate.js';
 
 const styles = {
   wizardSteps: {
@@ -23,8 +23,24 @@ export default class App extends Component {
 
     this.state = {
       demoStep: 0,
-      companies: [],
-      templates: []
+      companies: [{
+        companyName: 'Компания 1',
+        companyOwnerFirstName: 'Иван',
+        companyOwnerLastName: 'Попов',
+        companyUIC: '123456789'
+      }, {
+        companyName: 'Компания 2',
+        companyOwnerFirstName: 'Крум',
+        companyOwnerLastName: 'Иванов',
+        companyUIC: '987654321'
+      }],
+      templates: [{
+        name: "Тестови темплейт с 2 страни",
+        content: `<p>Днес на {$dateNow}компаниите {$side1companyName} и {$side2companyName} 
+        със собстевници в лицата на {$side1companyOwnerFirstName} {$side1companyOwnerLastName} и 
+        {$side2companyOwnerFirstName} {$side2companyOwnerLastName}<p>.
+        <p>Край</p>.`
+      }]
     }
   }
 
@@ -41,9 +57,16 @@ export default class App extends Component {
   renderDemoStep(step) {
     switch(step) {
       case 0:
-      return <InsertInfo onInsertCompany={this.onInsertCompany.bind(this)} companies={this.state.companies} />
+      return <InsertInfo 
+        onInsertCompany={this.onInsertCompany.bind(this)} 
+        companies={this.state.companies} 
+        />
       case 1:
-      return <BuildTemplate onInsertTemplate={this.onInsertTemplate.bind(this)} templates={this.state.templates} />
+      return <BuildTemplate 
+        onInsertTemplate={this.onInsertTemplate.bind(this)}
+        templates={this.state.templates} 
+        companies={this.state.companies}
+        />
       case 2:
       return <InsertTemplate info={this.state.info} templates={this.state.templates} />
       default:
@@ -59,9 +82,9 @@ export default class App extends Component {
         </div>
         {this.renderDemoStep(this.state.demoStep)}
         <div style={styles.wizardSteps}>
-          <button style={styles.button} onClick={() => this.setState({demoStep: 0})} >Step 1</button>
-          <button style={styles.button} onClick={() => this.setState({demoStep: 1})} >Step 2</button>
-          <button style={styles.button} onClick={() => this.setState({demoStep: 2})} >Step 3</button>
+          <button style={styles.button} onClick={() => this.setState({demoStep: 0})} >Стъпка 1</button>
+          <button style={styles.button} onClick={() => this.setState({demoStep: 1})} >Стъпка 2</button>
+          <button style={styles.button} onClick={() => this.setState({demoStep: 2})} >Стъпка 3</button>
         </div>
       </div>
     );
