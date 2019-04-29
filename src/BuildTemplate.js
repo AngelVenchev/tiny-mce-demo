@@ -23,7 +23,7 @@ export default class BuildTemplate extends Component {
       templateName: ''
     }
     this.editor = null;
-    this.printContent = this.printContent.bind(this);
+    this.storeTemplate = this.storeTemplate.bind(this);
     this.initEditor = this.initEditor.bind(this);
 
     this.init = {
@@ -75,7 +75,7 @@ export default class BuildTemplate extends Component {
     }
   }
 
-  printContent() {
+  storeTemplate() {
     var template = {
       name: this.state.templateName,
       content: this.editor.getContent()
@@ -105,11 +105,10 @@ export default class BuildTemplate extends Component {
           value={this.state.templateName} 
         />
         <Editor
-          style={{height: '600px'}}
           apiKey='hwjgvgigz3ijbarzkmw8081gddz0o1ll29tgrninsan0ocs2' 
           init={this.init}
           onInit={this.initEditor}/>
-        <button onClick={this.printContent}>Запази</button>
+        <button onClick={this.storeTemplate}>Запази</button>
         <div>
           <h2>Темплейти:</h2>
           <div>

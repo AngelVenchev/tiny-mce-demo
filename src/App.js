@@ -36,10 +36,9 @@ export default class App extends Component {
       }],
       templates: [{
         name: "Тестови темплейт с 2 страни",
-        content: `<p>Днес на {$dateNow}компаниите {$side1companyName} и {$side2companyName} 
+        content: `<p>Днес на {$dateNow} компаниите {$side1companyName} и {$side2companyName} 
         със собстевници в лицата на {$side1companyOwnerFirstName} {$side1companyOwnerLastName} и 
-        {$side2companyOwnerFirstName} {$side2companyOwnerLastName}<p>.
-        <p>Край</p>.`
+        {$side2companyOwnerFirstName} {$side2companyOwnerLastName}</p><p>Край</p>`
       }]
     }
   }
@@ -68,7 +67,7 @@ export default class App extends Component {
         companies={this.state.companies}
         />
       case 2:
-      return <InsertTemplate info={this.state.info} templates={this.state.templates} />
+      return <InsertTemplate companies={this.state.companies} templates={this.state.templates} />
       default:
       return null;
     }
